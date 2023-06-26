@@ -10,6 +10,10 @@ public class Main {
         //input
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
+
+        // 혹은
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        br.readLine();
         //logic
 
         //output
