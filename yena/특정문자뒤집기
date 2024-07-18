@@ -1,0 +1,44 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.*;
+
+public class HelloWorld{
+
+     public static void main(String []args) throws IOException {
+         
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        
+        String[] strs = new String[input]; 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int index = 0;
+    
+        while(input-- > 0) {
+            String str = br.readLine();
+    
+            char[] charArray = str.toCharArray();
+            int left = 0, right = str.length() - 1;
+            
+            while(left < right) {
+                if (!Character.isAlphabetic(charArray[left])) {
+                    ++left;
+                } else if(!Character.isAlphabetic(charArray[right])) {
+                    --right;
+                } else {
+                    char temp = charArray[left];
+                    charArray[left++] = charArray[right];
+                    charArray[right--] = temp;
+                }
+            }
+            
+            strs[index++] = new String(charArray);
+        }
+        
+        for(String str : strs) {
+            System.out.println(str);
+        }
+        br.close();
+        scanner.close();
+     }
+}
