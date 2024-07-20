@@ -1,0 +1,64 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.*;
+
+public class HelloWorld{
+
+     public static void main(String []args) throws IOException {
+         
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        
+        String[] strs = new String[input]; 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int index = 0;
+    
+        while(input-- > 0) {
+            String str = br.readLine();
+            
+            StringBuilder flipped = new StringBuilder();
+            int flipIndex = str.length() - 1;
+
+            // 내가 한 방법1. 시간복잡도는 O(N)
+            //while(flipIndex >= 0) flipped.append(str.charAt(flipIndex--));
+            //strs[index++] = flipped.toString();
+            
+            // 내가 한 방법2. 시간복잡도는 O(N/2)로 역시나 O(N)
+            /*
+            char[] charArray = str.toCharArray();
+            for(int i = 0; i < charArray.length/2; ++i) {
+                int side = charArray.length - 1 - i;
+                char temp = charArray[i];
+                charArray[i] = charArray[side];
+                charArray[side] = temp;
+            }
+            
+            strs[index++] = new String(charArray);
+            */
+
+
+          
+            // 강의에서 알려준 방법 1
+            strs[index++] = new StringBuilder(str).reverse().toString();
+
+            // 강의에서 알려준 방법 2
+            char[] charArray = str.toCharArray();
+            int left = 0, right = str.length()-1;
+            while(left < right) {
+              char temp = charArray[left];
+              charArray[left] = charArray[right]
+              charArray[right] = temp;
+              left++;
+              right++;
+            }
+            strs[index++] = String.valueOf(charArray);
+        }
+        
+        for(String str : strs) {
+            System.out.println(str);
+        }
+        br.close();
+        scanner.close();
+     }
+}

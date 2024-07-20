@@ -1,0 +1,33 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.*;
+
+public class HelloWorld{
+
+     public static void main(String []args) throws IOException {
+         
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        String str = br.readLine();
+        
+        StringBuilder builder = new StringBuilder();
+    
+        while(str.length() > 0) {
+            char c = str.charAt(0);
+            builder.append(c);
+            str = str.replaceAll(String.valueOf(c), "");
+        }
+        System.out.println(builder.toString());
+        br.close();
+     }
+}
+
+// 강의에서 알려준 방법
+String answer = "";
+for(int i = 0; i < str.length(); ++i) {
+  if(str.indexOf(str.charAt(i)) == i) 
+    answer += str.charAt(i);
+}
+
+System.out.println(answer);

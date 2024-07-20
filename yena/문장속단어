@@ -1,0 +1,43 @@
+public class HelloWorld{
+
+     public static void main(String []args) throws IOException {
+         
+         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+         String str = br.readLine();
+         
+         String strs[] = str.split(" ");
+         
+         String longest = Arrays.stream(strs)
+                       .max(Comparator.comparingInt(String::length))
+                       .orElse("");
+            
+        System.out.println(longest);
+    
+        longest = "";    
+        for(String element : strs) {
+            if(longest.length() < element.length())
+                longest = element;
+        }
+        
+        System.out.println(longest);
+
+
+        // 강의에서 알려준 방법
+        String answer = "";
+        int m = Integer.MIN_VALUE, pos;
+        while((pos = str.indexOf(' ') != -1) {
+          String tmp = str.substring(0, pos);
+          int len = tmp.length();
+          if(len > m) {
+            m = len;
+            answer = tmp;
+          }
+          str = str.substring(pos + 1);
+        }
+              
+        if(str.length > m)
+              answer = str;
+              
+        return answer;      
+     }
+}
