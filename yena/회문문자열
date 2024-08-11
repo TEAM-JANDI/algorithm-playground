@@ -1,0 +1,10 @@
+
+내가 푼 방법은 palindromNumber에서 푼 방법과 똑같아서 생략
+
+
+다른 방법
+
+
+return new StringBuilder(str).reverse().toString().equalsIgnoreCase(str) ? "YES" : "NO";
+
+StringBuilder의 reverse와, equalsIgnoreCase 기억해둘 것
