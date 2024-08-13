@@ -1,0 +1,73 @@
+내가 푼거
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.Math.*;
+import java.util.*;
+
+public class Main
+{
+    public static void main(String[] args) throws IOException {
+        
+      Scanner scanner = new Scanner(System.in);
+      String str = scanner.next();
+
+    char target = scanner.next().charAt(0);
+
+        List<Integer> targetIndexs = new ArrayList<>();
+        for(int i = 0; i < str.length(); ++i) {
+            if(str.charAt(i) == target)
+                targetIndexs.add(i);
+        }
+        
+        int curPivot = 0;
+        int nextPivot = curPivot + 1;
+        StringBuilder answer = new StringBuilder();
+        for(int i = 0; i < str.length(); ++i) {
+            
+            int curPivotGap = Math.abs(targetIndexs.get(curPivot) - i);
+            if(targetIndexs.size() <= nextPivot) {
+                answer.append(curPivotGap).append(" ");
+                continue;
+            }
+            int nextPivotGap = Math.abs(targetIndexs.get(nextPivot) - i);
+            if(curPivotGap <= nextPivotGap) {
+                answer.append(curPivotGap).append(" ");
+            } else {
+                answer.append(nextPivotGap).append(" ");
+                ++curPivot;
+                ++nextPivot;
+            }
+        }
+
+        System.out.println(answer);
+	}
+}
+
+
+// 강의
+// problem이 아닌 s가 주어진 문자열이고 t가 타겟이다
+// 왼쪽 기준 거리, 오른쪽 기준 거리 계산하여 그냥 min값 비교. 이게 나은듯.
+int[] answer = new int[s.length()];
+int p = 1000;
+for(int i = 0; i < s.length(); i++) {
+  if(s.charAt(i) == t) {
+    p = 0;
+    answer[i] = p;
+  } else {
+    p++;
+    answer[i] = p;
+  }
+}
+
+p = 1000;
+for(int i = s.length() -1; i>=0; i--) {
+  if(s.charAt(i) == t) p = 0;
+  else {
+    p++;
+    answer[i] = Math.min(answer[i], p);
+  }
+}
+
+return answer;
