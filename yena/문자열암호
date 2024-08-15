@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Program
+{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String cnt = scanner.next();
+        String str = scanner.next();
+
+        StringBuilder sb = new StringBuilder();
+        StringBuilder answer = new StringBuilder();
+        
+        for(int i = 0; i < str.length(); ++i) {
+            sb.append(str.charAt(i) == '#' ? 1 : 0);
+            if((i+1) % 7 == 0) {
+                int decimalNum = Integer.parseInt(sb.toString(), 2);
+                answer.append((char)decimalNum);
+                sb.setLength(0);
+            }
+        }
+
+        System.out.println(answer.toString());
+        scanner.close();
+	}
+}
+
+
+// 강의
+// replace라는게..있었구나...
+public String solution(int n, String s) {
+  String answer="";
+  for(int i = 0; i < n; i++) {
+    String tmp = s.substring(0, 7).replace('#', '1').replace('*', '0'); // for문 안에서 replace 처리하는게 이중포문이지만 안쪽 for문은 항상 7개 만큼 돌아가므로 o(1) 이라서 외부 for문과 합하여도 n * o(1) = o(n)이다. 
+    int num = Integer.parseInt(tmp, 2);
+    answer += (char)num; // StringBuilder를 사용해야 시간복잡도가 더 빠름
+    s = s.substring(7);
+  }
+  return answer;
+}
