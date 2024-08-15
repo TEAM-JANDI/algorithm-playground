@@ -1,27 +1,28 @@
 public class Program
 {
     public static void main(String[] args) {
+        import java.util.*;
+
+public class Program
+{
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String str = scanner.next();
 
-        char target = str.charAt(0);
-        int count = 1;
+
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(target);
-        for(int i = 1; i < str.length(); ++i) {
-            if(str.charAt(i) == target) {
+        
+        int count = 1;
+        for(int i = 0; i < str.length(); ++i) {
+            if(i < str.length() - 1 && str.charAt(i) == str.charAt(i + 1)) {
                 ++count;
-                if(i != str.length() - 1)
-                    continue;
+            } else {
+                stringBuilder.append(str.charAt(i));
+                if(count > 1)
+                    stringBuilder.append(count);
+
+                count = 1;
             }
-            
-
-            if(count > 1)
-                stringBuilder.append(count);
-
-            count = 1;
-            target = str.charAt(i);
-            stringBuilder.append(target);
         }
 
         System.out.println(stringBuilder.toString());
@@ -32,6 +33,7 @@ public class Program
 
 강의
 
+s = s+" "; // out of bound 방지
 int cnt = 1;
 for(int i = 0; i < s.length() - 1; i++){
   if(s.charAt(i) == s.charAt(i+1)) cnt++;
