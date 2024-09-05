@@ -1,0 +1,40 @@
+// https://school.programmers.co.kr/learn/courses/30/lessons/133502
+public class Makinghamburgers {
+
+    static public int solution(int[] ingredient) {
+        int answer = 0;
+
+        Stack<Integer> stack = new Stack<>();
+        for (int ing : ingredient) {
+            stack.push(ing);
+
+            if (stack.size() >= 4) {
+                int size = stack.size();
+
+                if (stack.get(size - 4) == 1
+                    && stack.get(size - 3) == 2
+                    && stack.get(size - 2) == 3
+                    && stack.get(size - 1) == 1) {
+
+                    stack.pop();
+                    stack.pop();
+                    stack.pop();
+                    stack.pop();
+
+                    answer++;
+                }
+            }
+        }
+
+        return answer;
+    }
+
+/*
+stack보다 int[] 를 사용해서 처리한 게 로직은 비슷해보이는데 속도가 훨씬 빠르다.. 
+ */
+
+    public static void main(String[] args) {
+        int[] ingredient = {2, 1, 1, 2, 3, 1, 2, 3, 1};
+        solution(ingredient);
+    }
+}
