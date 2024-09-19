@@ -1,0 +1,23 @@
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/86491
+public class MinimumRectangle {
+
+    public int solution(int[][] sizes) {
+        int minW = 0;
+        int minH = 0;
+        for (int i = 0; i < sizes.length; i++) {
+            int w = Math.max(sizes[i][0], sizes[i][1]);
+            int h = Math.min(sizes[i][0], sizes[i][1]);
+
+            if(minW < w) {
+                minW = w;
+            }
+            if(minH < h) {
+                minH = h;
+            }
+        }
+
+        return minW * minH;
+    }
+
+}
